@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executive Health & Wellness - Elevate Your Health</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --deep-purple: #6B46C1;
+            --vibrant-teal: #0D9488;
+            --gold-accent: #F59E0B;
+            --dark-slate: #1E293B;
+            --light-lavender: #F3F4F6;
+            --text-primary: #0F172A;
+            --text-secondary: #64748B;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            opacity: 0.03;
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.05;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            background: var(--deep-purple);
+            border-radius: 50%;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            background: var(--vibrant-teal);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            top: 60%;
+            right: 15%;
+            animation-delay: 5s;
+        }
+
+        .shape:nth-child(3) {
+            width: 250px;
+            height: 250px;
+            background: var(--gold-accent);
+            border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+            bottom: 10%;
+            left: 20%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1.2rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--deep-purple), var(--vibrant-teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--deep-purple), var(--vibrant-teal));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            transform: rotate(-5deg);
+            transition: transform 0.3s;
+        }
+
+        .logo:hover .logo-icon {
+            transform: rotate(0deg) scale(1.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--deep-purple);
+        }
+
+        .nav-cta-btn {
+            background: linear-gradient(135deg, var(--deep-purple), var(--vibrant-teal));
+            color: white;
+            padding: 0.9rem 2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(107, 70, 193, 0.3);
+        }
+
+        .nav-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(107, 70, 193, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding: 4rem 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--deep-purple), var(--vibrant-teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 900;
+        }
+
+        .hero-content .highlight {
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-content .highlight:after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+            height: 15px;
+            background: var(--gold-accent);
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--deep-purple), var(--vibrant-teal));
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 8px 30px rgba(107, 70, 193, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(107, 70, 193, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--deep-purple);
+            padding: 1.2rem 2.5rem;
+            border: 3px solid var(--deep-purple);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: var(--deep-purple);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .hero-visual {
+            position: relative;
+        }
+
+        .hero-card {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(135deg, rgba(107, 70, 193, 0.1), rgba(13, 148, 136, 0.1));
+            border-radius: 50%;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--light-lavender);
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--deep-purple), var(--vibrant-teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        /* Floating Action Bar */
+        .action-bar {
+            background: white;
+            padding: 1.5rem 5%;
+            box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .action-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            background: var(--light-lavender);
+            border-radius: 50px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .action-item:hover {
+            background: linear-gradient(135deg, var(--deep-purple), var(--vibrant-teal));
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .action-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--deep-purple), var(--vibrant-teal));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+        }
+
+        .action-item:hover .action-icon {
+            background: white;
+            color: var(--deep-purple);
+        }
+
+        /* Services Masonry */
+        .services-section {
+            padding: 6rem 5%;
+            background: var(--light-lavender);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--deep-purple), var(--vibrant-teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+        }
+
+        .services-masonry {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-tile {
+            background: white;
+            border-radius: 25px;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .service-tile:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--deep-purple), var(--vibrant-teal));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .service-tile:hover:before {
+            opacity: 0.95;
+        }
+
+        .service-tile:hover {
+            transform: translateY(-15px) rotate(2deg);
+            box-shadow: 0 25px 50px rgba(107, 70, 193, 0.3);
+        }
+
+        .service-tile:hover .service-content {
+            color: white;
+        }
+
+        .service-tile:hover .service-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .service-content {
+            position: relative;
+            z-index: 1;
+            transition: color 0.4s;
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(107, 70, 193, 0.1), rgba(13, 148, 136, 0.1));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.4s;
+        }
+
+        .service-tile:hover .service-icon {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .service-content h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .service-content p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .service-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+
+        .service-list li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Testimonial Slider - Unique Design */
+        .testimonials-section {
+            padding: 6rem 5%;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-slider {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .testimonial-slide {
+            min-width: 100%;
+            padding: 0 2rem;
+        }
+
+        .testimonial-content {
+            background: linear-gradient(135deg, var(--deep-purple), var(--vibrant-teal));
+            border-radius: 40px;
+            padding: 4rem;
+            color: white;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(107, 70, 193, 0.3);
+        }
+
+        .quote-icon {
+            font-size: 5rem;
+            opacity: 0.2;
+            position: absolute;
+            top: 2rem;
+            left: 3rem;
+        }
+
+        .testimonial-text {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .author-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--deep-purple);
+        }
+
+        .author-info h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .author-role {
+            opacity: 0.9;
+        }
+
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .slider-dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--text-secondary);
+            opacity: 0.3;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .slider-dot.active {
+            background: var(--deep-purple);
+            opacity: 1;
+            width: 40px;
+            border-radius: 10px;
+        }
+
+        /* Interactive Booking */
+        .booking-section {
+            padding: 6rem 5%;
+            background: var(--dark-slate);
+            color: white;
+        }
+
+        .booking-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .booking-info h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+        }
+
+        .booking-info p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .booking-features {
+            list-style: none;
+        }
+
+        .booking-features li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0;
+            font-size: 1.1rem;
+        }
+
+        .booking-features i {
+            width: 30px;
+            height: 30px;
+            background: var(--gold-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .booking-form-container {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .booking-form-container h3 {
+            color: var(--deep-purple);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            font-weight: 800;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 15px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--deep-purple);
+            box-shadow: 0 0 0 4px rgba(107, 70, 193, 0.1);
+        }
+
+        .form-submit {
+            width: 100%;
+            background: linear-gradient(135deg, var(--deep-purple), var(--vibrant-teal));
+            color: white;
+            padding: 1.2rem;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(107, 70, 193, 0.4);
+        }
+
+        /* Location with Split Design */
+        .location-section {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .location-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .location-map {
+            background: linear-gradient(135deg, var(--deep-purple), var(--vibrant-teal));
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-placeholder-content {
+            text-align: center;
+            z-index: 1;
+            position: relative;
+        }
+
+        .map-placeholder-content i {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .location-details {
+            background: white;
+            padding: 4rem;
+        }
+
+        .location-details h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--deep-purple), var(--vibrant-teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 900;
+        }
+
+        .contact-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .contact-card {
+            background: var(--light-lavender);
+            padding: 2rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: start;
+            gap: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--deep-purple), var(--vibrant-teal));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .contact-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .contact-info p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Social Proof */
+        .social-section {
+            padding: 6rem 5%;
+            background: var(--light-lavender);
+            text-align: center;
+        }
+
+        .social-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .social-content h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--deep-purple), var(--vibrant-teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .social-content p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--deep-purple);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-10px) rotate(10deg);
+            background: linear-gradient(135deg, var(--deep-purple), var(--vibrant-teal));
+            color: white;
+            box-shadow: 0 15px 40px rgba(107, 70, 193, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-slate);
+            color: white;
+            padding: 5rem 5% 3rem;
+        }
+
+        .footer-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--gold-accent), white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-brand p {
+            opacity: 0.8;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--gold-accent);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .footer-section a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            opacity: 0.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-grid,
+            .booking-wrapper,
+            .location-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stat-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-masonry {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <span>Executive Health</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#testimonials">Stories</a></li>
+                <li><a href="#location">Location</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="nav-cta-btn">Book Consultation</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-grid">
+            <div class="hero-content">
+                <h1>
+                    Elevate Your <span class="highlight">Health</span><br>
+                    Transform Your Life
+                </h1>
+                <p>
+                    Experience concierge medicine that goes beyond treatment. We combine cutting-edge diagnostics, 
+                    personalized optimization, and holistic care to help you achieve peak performance and lasting vitality.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn-primary">
+                        <i class="fas fa-calendar-check"></i> Schedule Your Journey
+                    </button>
+                    <button class="btn-secondary">
+                        <i class="fas fa-play-circle"></i> Watch Our Story
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-card">
+                    <div class="stat-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">98%</div>
+                            <div class="stat-label">Patient Satisfaction</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">5K+</div>
+                            <div class="stat-label">Lives Transformed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Concierge Access</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Action Bar -->
+    <section class="action-bar">
+        <div class="action-item">
+            <div class="action-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <div>
+                <strong>HIPAA Secure</strong>
+                <p style="margin: 0; font-size: 0.9rem; opacity: 0.7;">Protected Privacy</p>
+            </div>
+        </div>
+        <div class="action-item">
+            <div class="action-icon">
+                <i class="fas fa-award"></i>
+            </div>
+            <div>
+                <strong>Board Certified</strong>
+                <p style="margin: 0; font-size: 0.9rem; opacity: 0.7;">Expert Providers</p>
+            </div>
+        </div>
+        <div class="action-item">
+            <div class="action-icon">
+                <i class="fas fa-star"></i>
+            </div>
+            <div>
+                <strong>5-Star Rated</strong>
+                <p style="margin: 0; font-size: 0.9rem; opacity: 0.7;">Premium Care</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="section-title">
+            <h2>Our Services</h2>
+            <p>Comprehensive care designed for your unique health journey</p>
+        </div>
+        <div class="services-masonry">
+            <div class="service-tile">
+                <div class="service-content">
+                    <div class="service-icon">🧬</div>
+                    <h3>Precision Diagnostics</h3>
+                    <p>Unlock your body's blueprint with advanced testing</p>
+                    <ul class="service-list">
+                        <li>Comprehensive Genetic Analysis</li>
+                        <li>Hormone & Metabolic Panels</li>
+                        <li>Advanced Biomarker Testing</li>
+                        <li>Personalized Risk Assessment</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="service-tile">
+                <div class="service-content">
+                    <div class="service-icon">💎</div>
+                    <h3>Optimization Therapies</h3>
+                    <p>Restore balance and enhance performance</p>
+                    <ul class="service-list">
+                        <li>Peptide Therapy Programs</li>
+                        <li>Bioidentical Hormone Balance</li>
+                        <li>IV Nutrient Infusions</li>
+                        <li>Cellular Regeneration</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="service-tile">
+                <div class="service-content">
+                    <div class="service-icon">🛡️</div>
+                    <h3>Preventive Excellence</h3>
+                    <p>Stay ahead with proactive health strategies</p>
+                    <ul class="service-list">
+                        <li>Pre-Cancer Screening</li>
+                        <li>Executive Health Assessments</li>
+                        <li>Early Detection Protocols</li>
+                        <li>Longevity Planning</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="service-tile">
+                <div class="service-content">
+                    <div class="service-icon">🌱</div>
+                    <h3>Integrative Wellness</h3>
+                    <p>Holistic care that treats the whole person</p>
+                    <ul class="service-list">
+                        <li>Functional Medicine</li>
+                        <li>Lifestyle Optimization</li>
+                        <li>Nutritional Therapy</li>
+                        <li>Mind-Body Integration</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="section-title">
+            <h2>Success Stories</h2>
+            <p>Real transformations from real people</p>
+        </div>
+        <div class="testimonial-slider">
+            <div class="testimonial-track" id="testimonialTrack">
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">"</div>
+                        <p class="testimonial-text">
+                            "Executive Health & Wellness changed my life. After struggling with chronic fatigue for years, 
+                            their comprehensive hormone analysis and peptide therapy gave me energy I didn't know was possible. 
+                            I'm back to running marathons and crushing it at work."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">JM</div>
+                            <div class="author-info">
+                                <h4>Jennifer Martinez</h4>
+                                <p class="author-role">Tech Executive • San Francisco</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">"</div>
+                        <p class="testimonial-text">
+                            "The level of personalized attention is unparalleled. They didn't just treat my symptoms—they 
+                            uncovered root causes through genetic testing that traditional doctors missed. Now I have a 
+                            roadmap for long-term health that actually makes sense."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">RK</div>
+                            <div class="author-info">
+                                <h4>Robert Klein</h4>
+                                <p class="author-role">Entrepreneur • New York</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">"</div>
+                        <p class="testimonial-text">
+                            "With a family history of cancer, I was terrified. Their comprehensive screening and preventive 
+                            protocols gave me peace of mind and a proactive plan. The team is professional, caring, and 
+                            truly invested in my wellness journey."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">SC</div>
+                            <div class="author-info">
+                                <h4>Sarah Chen</h4>
+                                <p class="author-role">Attorney • Charlotte</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-nav">
+                <span class="slider-dot active" onclick="goToTestimonial(0)"></span>
+                <span class="slider-dot" onclick="goToTestimonial(1)"></span>
+                <span class="slider-dot" onclick="goToTestimonial(2)"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking-section" id="contact">
+        <div class="booking-wrapper">
+            <div class="booking-info">
+                <h2>Begin Your Transformation</h2>
+                <p>
+                    Schedule a comprehensive consultation and discover how personalized medicine 
+                    can help you achieve optimal health, enhanced performance, and lasting vitality.
+                </p>
+                <ul class="booking-features">
+                    <li>
+                        <i class="fas fa-check"></i>
+                        60-Minute Comprehensive Assessment
+                    </li>
+                    <li>
+                        <i class="fas fa-check"></i>
+                        Personalized Treatment Roadmap
+                    </li>
+                    <li>
+                        <i class="fas fa-check"></i>
+                        Same-Day Scheduling Available
+                    </li>
+                    <li>
+                        <i class="fas fa-check"></i>
+                        Flexible Virtual & In-Person Options
+                    </li>
+                </ul>
+            </div>
+            <div class="booking-form-container">
+                <h3>Request Your Consultation</h3>
+                <form id="bookingForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Service Interest</label>
+                        <select required>
+                            <option value="">Select a service</option>
+                            <option>Precision Diagnostics</option>
+                            <option>Optimization Therapies</option>
+                            <option>Preventive Care</option>
+                            <option>Integrative Wellness</option>
+                            <option>General Consultation</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Tell Us About Your Goals</label>
+                        <textarea rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">
+                        <i class="fas fa-paper-plane"></i> Request Appointment
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="location-section" id="location">
+        <div class="location-grid">
+            <div class="location-map">
+                <div class="map-placeholder-content">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3 style="font-size: 2rem; margin-bottom: 0.5rem;">Find Us</h3>
+                    <p style="font-size: 1.2rem;">Waxhaw, North Carolina</p>
+                    <p style="margin-top: 1.5rem; opacity: 0.8;">
+                        Conveniently located with easy access
+                    </p>
+                </div>
+            </div>
+            <div class="location-details">
+                <h2>Visit Our Clinic</h2>
+                <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 2.5rem;">
+                    Experience premium healthcare in a comfortable, modern setting designed for your privacy and wellness.
+                </p>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h4>Address</h4>
+                            <p>123 Executive Boulevard, Suite 200<br>Waxhaw, NC 28173</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h4>Phone</h4>
+                            <p>(555) 123-4567</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h4>Email</h4>
+                            <p>info@executivehealthwellness.com</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h4>Hours</h4>
+                            <p>Mon-Fri: 8:00 AM - 6:00 PM<br>
+                            Sat: 9:00 AM - 2:00 PM<br>
+                            Sun: By Appointment</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-primary" style="margin-top: 2rem;">
+                    <i class="fas fa-directions"></i> Get Directions
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Section -->
+    <section class="social-section">
+        <div class="social-content">
+            <h2>Connect With Us</h2>
+            <p>Follow our journey, get health insights, and join our wellness community</p>
+            <div class="social-icons">
+                <a href="#" class="social-btn">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-btn">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-btn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="#" class="social-btn">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="social-btn">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="#" class="social-btn">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>Executive Health & Wellness</h3>
+                <p>
+                    Elevating healthcare through personalized medicine, advanced diagnostics, 
+                    and a holistic approach to optimal wellness and longevity.
+                </p>
+                <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                    <i class="fas fa-phone" style="color: var(--gold-accent);"></i>
+                    <span>(555) 123-4567</span>
+                </div>
+                <div style="display: flex; gap: 1rem; margin-top: 0.8rem;">
+                    <i class="fas fa-envelope" style="color: var(--gold-accent);"></i>
+                    <span>info@executivehealthwellness.com</span>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Precision Diagnostics</a></li>
+                    <li><a href="#">Optimization Therapies</a></li>
+                    <li><a href="#">Preventive Care</a></li>
+                    <li><a href="#">Integrative Wellness</a></li>
+                    <li><a href="#">Executive Assessments</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Providers</a></li>
+                    <li><a href="#">Testimonials</a></li>
+                    <li><a href="#">Blog & Resources</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Patient Portal</a></li>
+                    <li><a href="#">Insurance Info</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">New Patients</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Executive Health & Wellness. All rights reserved.</p>
+            <p style="margin-top: 0.5rem;">
+                <a href="#" style="color: inherit; margin: 0 1rem;">Privacy Policy</a> | 
+                <a href="#" style="color: inherit; margin: 0 1rem;">HIPAA Notice</a> | 
+                <a href="#" style="color: inherit; margin: 0 1rem;">Terms of Use</a>
+            </p>
+            <p style="margin-top: 1.5rem; font-size: 0.85rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+                This website does not provide medical advice. The content is for informational purposes only 
+                and is not a substitute for professional medical advice, diagnosis, or treatment.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Testimonial Slider
+        let currentTestimonial = 0;
+        const testimonials = document.querySelectorAll('.testimonial-slide');
+        const testimonialDots = document.querySelectorAll('.slider-dot');
+        const testimonialTrack = document.getElementById('testimonialTrack');
+
+        function updateTestimonials() {
+            testimonialTrack.style.transform = `translateX(-${currentTestimonial * 100}%)`;
+            testimonialDots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentTestimonial);
+            });
+        }
+
+        function goToTestimonial(index) {
+            currentTestimonial = index;
+            updateTestimonials();
+        }
+
+        function nextTestimonial() {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            updateTestimonials();
+        }
+
+        // Auto-advance testimonials
+        setInterval(nextTestimonial, 7000);
+
+        // Form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your interest! We will contact you shortly to confirm your consultation.');
+            this.reset();
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Parallax effect for floating shapes
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const shapes = document.querySelectorAll('.shape');
+            shapes.forEach((shape, index) => {
+                const speed = 0.1 + (index * 0.05);
+                shape.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Service tile hover effects with 3D tilt
+        const serviceTiles = document.querySelectorAll('.service-tile');
+        serviceTiles.forEach(tile => {
+            tile.addEventListener('mousemove', (e) => {
+                const rect = tile.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                tile.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-15px)`;
+            });
+            
+            tile.addEventListener('mouseleave', () => {
+                tile.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
