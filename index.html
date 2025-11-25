@@ -1553,34 +1553,29 @@
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  // Wait until DOM is fully loaded
-  document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("bookingForm");
 
-    const form = document.getElementById("bookingForm");
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+    const data = {
+      firstName: document.getElementById("firstName").value,
+      lastName: document.getElementById("lastName").value,
+      email: document.getElementById("email").value,
+      phone: document.getElementById("phone").value,
+      service: document.getElementById("service").value,
+      goals: document.getElementById("goals").value,
+      timestamp: new Date()
+    };
 
-      const data = {
-        firstName: document.getElementById("firstName").value,
-        lastName: document.getElementById("lastName").value,
-        email: document.getElementById("email").value,
-        phone: document.getElementById("phone").value,
-        service: document.getElementById("service").value,
-        goals: document.getElementById("goals").value,
-        timestamp: new Date()
-      };
-
-      try {
-        await addDoc(collection(db, "consultation_requests"), data);
-        alert("Thanks! Your request has been submitted.");
-        form.reset();
-      } catch (err) {
-        console.error("Firestore Error:", err);
-        alert("Something went wrong. Try again.");
-      }
-    });
-
+    try {
+      await addDoc(collection(db, "consultation_requests"), data);
+      alert("Thanks! Your request has been submitted.");
+      form.reset();
+    } catch (err) {
+      console.error("Firestore Error:", err);
+      alert("Something went wrong. Try again.");
+    }
   });
 </script>
 </body>
