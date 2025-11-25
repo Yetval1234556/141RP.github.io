@@ -1542,5 +1542,50 @@
             });
         });
     </script>
+    <script type="module">
+  // ---- Firebase SDK Imports ----
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+  // ---- YOUR FIREBASE CONFIG GOES HERE ----
+  const firebaseConfig = {
+  apiKey: "AIzaSyBW-RoAIwBF0_b1IMSifncrvzxMMTAExCc",
+  authDomain: "executive-health.firebaseapp.com",
+  projectId: "executive-health",
+  storageBucket: "executive-health.firebasestorage.app",
+  messagingSenderId: "969292907612",
+  appId: "1:969292907612:web:342074dc2329bf843fd299"
+};
+
+  // ---- Initialize Firebase ----
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // ---- Form Handler ----
+  const form = document.getElementById('bookingForm');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const data = {
+      firstName: document.getElementById('firstName').value,
+      lastName: document.getElementById('lastName').value,
+      email: document.getElementById('email').value,
+      phone: document.getElementById('phone').value,
+      service: document.getElementById('service').value,
+      goals: document.getElementById('goals').value,
+      timestamp: new Date()
+    };
+
+    try {
+      await addDoc(collection(db, "consultation_requests"), data);
+      alert("Thanks! Your request has been submitted.");
+      form.reset();
+    } catch (error) {
+      console.error(error);
+      alert("Error submitting form. Try again.");
+    }
+  });
+</script>
 </body>
 </html>
