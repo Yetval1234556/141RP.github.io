@@ -1,0 +1,347 @@
+/* ===== CSS Reset & Base ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --orange: #f15a22;
+    --navy: #0a0e27;
+    --light-bg: #f5f7ff;
+    --light-text: #0a0e27;
+    --dark-text: #ffffff;
+    --accent-glow: rgba(241, 90, 34, 0.3);
+}
+
+html {
+    scroll-behavior: smooth;
+    cursor: none;
+}
+
+body {
+    font-family: 'Work Sans', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+}
+
+/* ===== Custom Cursor ===== */
+.cursor-ring {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    transition: all 0.15s ease;
+    mix-blend-mode: difference;
+}
+
+.cursor-dot {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10001;
+    mix-blend-mode: difference;
+}
+
+body.light-mode .cursor-ring {
+    border-color: rgba(10, 14, 39, 0.6);
+}
+
+body.light-mode .cursor-dot {
+    background: #0a0e27;
+}
+
+/* Cursor hover effects */
+a:hover ~ .cursor-ring,
+button:hover ~ .cursor-ring {
+    transform: scale(1.5);
+    border-width: 1px;
+}
+
+/* ===== Hero Section ===== */
+#hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#gradient-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+#gradient-container canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* ===== Hero Content ===== */
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    color: var(--dark-text);
+    animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 12vw, 9rem);
+    font-weight: 700;
+    line-height: 0.95;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.03em;
+}
+
+.title-line {
+    display: block;
+    animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+}
+
+.title-line:first-child {
+    animation-delay: 0.2s;
+}
+
+.title-line:last-child {
+    animation-delay: 0.4s;
+    font-style: italic;
+}
+
+.hero-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    font-weight: 300;
+    margin-bottom: 3rem;
+    letter-spacing: 0.05em;
+    animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.6s;
+    opacity: 0;
+}
+
+/* ===== CTA Button ===== */
+.cta-button {
+    display: inline-block;
+    padding: 1.2rem 3rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--dark-text);
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.8s;
+    opacity: 0;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(241, 90, 34, 0.4);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    border-color: rgba(241, 90, 34, 0.8);
+    box-shadow: 0 10px 40px rgba(241, 90, 34, 0.3);
+}
+
+.cta-button:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.cta-button span {
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== Pause/Play Button ===== */
+.pause-btn {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 100;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    color: var(--dark-text);
+    cursor: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pause-btn:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(241, 90, 34, 0.6);
+    box-shadow: 0 8px 30px rgba(241, 90, 34, 0.2);
+}
+
+.pause-btn svg {
+    width: 20px;
+    height: 20px;
+    transition: opacity 0.2s ease;
+}
+
+.pause-btn .play-icon {
+    position: absolute;
+    opacity: 0;
+}
+
+.pause-btn .pause-icon {
+    opacity: 1;
+}
+
+.pause-btn.paused .play-icon {
+    opacity: 1;
+}
+
+.pause-btn.paused .pause-icon {
+    opacity: 0;
+}
+
+/* ===== Footer ===== */
+.hero-footer {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    z-index: 100;
+    animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 1s;
+    opacity: 0;
+}
+
+.hero-footer a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 300;
+    transition: color 0.3s ease;
+    letter-spacing: 0.05em;
+}
+
+.hero-footer a:hover {
+    color: var(--orange);
+}
+
+/* ===== Light Mode ===== */
+body.light-mode {
+    color: var(--light-text);
+}
+
+body.light-mode .hero-content {
+    color: var(--light-text);
+}
+
+body.light-mode .cta-button {
+    color: var(--light-text);
+    border-color: rgba(10, 14, 39, 0.3);
+}
+
+body.light-mode .cta-button:hover {
+    border-color: rgba(241, 90, 34, 0.8);
+}
+
+body.light-mode .pause-btn {
+    border-color: rgba(10, 14, 39, 0.2);
+    background: rgba(255, 255, 255, 0.3);
+    color: var(--light-text);
+}
+
+body.light-mode .pause-btn:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+body.light-mode .hero-footer a {
+    color: rgba(10, 14, 39, 0.6);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: clamp(2.5rem, 10vw, 5rem);
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .cta-button {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+
+    .pause-btn {
+        bottom: 1.5rem;
+        right: 1.5rem;
+        width: 48px;
+        height: 48px;
+    }
+
+    .hero-footer {
+        bottom: 1.5rem;
+        left: 1.5rem;
+    }
+
+    /* Hide custom cursor on mobile */
+    .cursor-ring,
+    .cursor-dot {
+        display: none;
+    }
+
+    html,
+    body {
+        cursor: auto;
+    }
+}
+
+/* Prevent text selection for cleaner aesthetic */
+.hero-title,
+.hero-subtitle {
+    user-select: none;
+}
