@@ -413,8 +413,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const ctaButton = document.querySelector('.cta-button');
     if (ctaButton) {
         ctaButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            // Add your scroll logic here when you add more sections
+            // Allow default navigation
             console.log('CTA clicked');
         });
     }
