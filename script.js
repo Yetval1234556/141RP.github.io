@@ -385,13 +385,22 @@ window.addEventListener('DOMContentLoaded', () => {
     // Text Scramble Effect
     const titleElement = document.querySelector('.title-line');
     if (titleElement) {
+        console.log('Text Scramble initialized on:', titleElement);
         const fx = new TextScramble(titleElement);
-        // Delay slightly or run immediately
+
+        // Initial run
         setTimeout(() => {
-            fx.setText('Rohin Patel');
+            console.log('Starting Text Scramble animation...');
+            fx.setText('Rohin Patel').then(() => {
+                console.log('Text Scramble animation complete.');
+            });
         }, 500);
 
-        // Optional: Re-run on click or hover if desired, currently just run once on load
+        // Re-run on hover
+        titleElement.addEventListener('mouseenter', () => {
+            console.log('Hover detected, restarting animation...');
+            fx.setText('Rohin Patel');
+        });
     }
 
     const container = document.getElementById('gradient-container');
