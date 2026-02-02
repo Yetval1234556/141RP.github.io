@@ -335,7 +335,7 @@ class TextScramble {
             const from = oldText[i] || '';
             const to = newText[i] || '';
             const start = Math.floor(Math.random() * 40);
-            const end = start + Math.floor(Math.random() * 40);
+            const end = start + Math.floor(Math.random() * 40) + 30; // Min duration
             this.queue.push({ from, to, start, end });
         }
         cancelAnimationFrame(this.frameRequest);
@@ -394,7 +394,7 @@ window.addEventListener('DOMContentLoaded', () => {
             fx.setText('Rohin Patel').then(() => {
                 console.log('Text Scramble animation complete.');
             });
-        }, 500);
+        }, 1200);
 
         // Re-run on hover
         titleElement.addEventListener('mouseenter', () => {
