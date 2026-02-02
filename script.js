@@ -6,10 +6,10 @@ class TouchTexture {
         this.height = 64;
         this.maxAge = 64;
         this.radius = 0.1;
-        this.speed = 1/64;
+        this.speed = 1 / 64;
         this.trail = [];
         this.last = null;
-        
+
         this.canvas = document.createElement("canvas");
         this.canvas.width = this.width;
         this.canvas.height = this.height;
@@ -22,39 +22,39 @@ class TouchTexture {
     update() {
         this.ctx.fillStyle = "black";
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-        
+
         for (let i = this.trail.length - 1; i >= 0; i--) {
             const p = this.trail[i];
             const f = p.force * this.speed * (1 - p.age / this.maxAge);
             p.x += p.vx * f;
             p.y += p.vy * f;
             p.age++;
-            
+
             if (p.age > this.maxAge) {
                 this.trail.splice(i, 1);
             } else {
                 this.drawPoint(p);
             }
         }
-        
+
         this.texture.needsUpdate = true;
     }
 
     addTouch(point) {
         let force = 0, vx = 0, vy = 0;
-        
+
         if (this.last) {
             const dx = point.x - this.last.x;
             const dy = point.y - this.last.y;
-            
+
             if (dx === 0 && dy === 0) return;
-            
-            const d = Math.sqrt(dx*dx + dy*dy);
-            vx = dx/d;
-            vy = dy/d;
-            force = Math.min((dx*dx + dy*dy) * 20000, 2.0);
+
+            const d = Math.sqrt(dx * dx + dy * dy);
+            vx = dx / d;
+            vy = dy / d;
+            force = Math.min((dx * dx + dy * dy) * 20000, 2.0);
         }
-        
+
         this.last = { x: point.x, y: point.y };
         this.trail.push({ x: point.x, y: point.y, age: 0, force, vx, vy });
     }
@@ -64,17 +64,17 @@ class TouchTexture {
             x: p.x * this.width,
             y: (1 - p.y) * this.height
         };
-        
-        let intensity = p.age < this.maxAge * 0.3 
+
+        let intensity = p.age < this.maxAge * 0.3
             ? Math.sin((p.age / (this.maxAge * 0.3)) * (Math.PI / 2))
-            : -((1 - (p.age - this.maxAge * 0.3) / (this.maxAge * 0.7)) * 
+            : -((1 - (p.age - this.maxAge * 0.3) / (this.maxAge * 0.7)) *
                 ((1 - (p.age - this.maxAge * 0.3) / (this.maxAge * 0.7)) - 2));
-        
+
         intensity *= p.force;
-        
+
         const color = `${((p.vx + 1) / 2) * 255}, ${((p.vy + 1) / 2) * 255}, ${intensity * 255}`;
         const radius = this.radius * this.width;
-        
+
         this.ctx.shadowOffsetX = this.size * 5;
         this.ctx.shadowOffsetY = this.size * 5;
         this.ctx.shadowBlur = radius;
@@ -92,7 +92,7 @@ class GradientBackground {
         this.mesh = null;
         this.sceneManager = sceneManager;
         this.isPaused = false;
-        
+
         this.uniforms = {
             uTime: { value: 0 },
             uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
@@ -117,7 +117,7 @@ class GradientBackground {
     init() {
         const viewSize = this.sceneManager.getViewSize();
         const geometry = new THREE.PlaneGeometry(viewSize.width, viewSize.height, 1, 1);
-        
+
         const material = new THREE.ShaderMaterial({
             uniforms: this.uniforms,
             vertexShader: `
@@ -186,7 +186,7 @@ class GradientBackground {
                 }
             `
         });
-        
+
         this.mesh = new THREE.Mesh(geometry, material);
         this.sceneManager.scene.add(this.mesh);
     }
@@ -229,7 +229,7 @@ class App {
         this.renderer.setSize(container.clientWidth, container.clientHeight);
         this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         container.appendChild(this.renderer.domElement);
-        
+
         this.camera = new THREE.PerspectiveCamera(
             45,
             container.clientWidth / container.clientHeight,
@@ -237,15 +237,15 @@ class App {
             10000
         );
         this.camera.position.z = 50;
-        
+
         this.scene = new THREE.Scene();
         this.scene.background = new THREE.Color(0x0a0e27);
-        
+
         this.clock = new THREE.Clock();
         this.touchTexture = new TouchTexture();
         this.gradientBackground = new GradientBackground(this);
         this.gradientBackground.uniforms.uTouchTexture.value = this.touchTexture.texture;
-        
+
         this.animationId = null;
         this.init();
     }
@@ -269,7 +269,7 @@ class App {
 
     init() {
         this.gradientBackground.init();
-        
+
         const c = this.container;
         const onMove = (x, y) => {
             this.touchTexture.addTouch({
@@ -277,24 +277,24 @@ class App {
                 y: 1 - y / c.clientHeight
             });
         };
-        
+
         c.addEventListener("mousemove", (e) => {
             const rect = c.getBoundingClientRect();
             onMove(e.clientX - rect.left, e.clientY - rect.top);
         });
-        
+
         c.addEventListener("touchmove", (e) => {
             const rect = c.getBoundingClientRect();
             onMove(e.touches[0].clientX - rect.left, e.touches[0].clientY - rect.top);
         });
-        
+
         window.addEventListener("resize", () => {
             this.camera.aspect = c.clientWidth / c.clientHeight;
             this.camera.updateProjectionMatrix();
             this.renderer.setSize(c.clientWidth, c.clientHeight);
             this.gradientBackground.onResize(c.clientWidth, c.clientHeight);
         });
-        
+
         this.tick();
     }
 
@@ -340,44 +340,44 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 
     function animateCursor() {
-    // Smooth interpolation for cursor position
-    cursorX += (mouseX - cursorX) * 0.12;
-    cursorY += (mouseY - cursorY) * 0.12;
-    dotX += (mouseX - dotX) * 0.3;
-    dotY += (mouseY - dotY) * 0.3;
+        // Smooth interpolation for cursor position
+        cursorX += (mouseX - cursorX) * 0.12;
+        cursorY += (mouseY - cursorY) * 0.12;
+        dotX += (mouseX - dotX) * 0.3;
+        dotY += (mouseY - dotY) * 0.3;
 
-    if (cursorRing) {
-        // Center the 40px ring (20px radius) on the cursor position
-        cursorRing.style.left = cursorX + 'px';
-        cursorRing.style.top = cursorY + 'px';
-        cursorRing.style.transform = 'translate(-50%, -50%)';
-    }
-    if (cursorDot) {
-        // Center the 8px dot (4px radius) on the cursor position
-        cursorDot.style.left = dotX + 'px';
-        cursorDot.style.top = dotY + 'px';
-        cursorDot.style.transform = 'translate(-50%, -50%)';
-    }
+        if (cursorRing) {
+            // Center the 40px ring (20px radius) on the cursor position
+            cursorRing.style.left = cursorX + 'px';
+            cursorRing.style.top = cursorY + 'px';
+            cursorRing.style.transform = 'translate(-50%, -50%)';
+        }
+        if (cursorDot) {
+            // Center the 8px dot (4px radius) on the cursor position
+            cursorDot.style.left = dotX + 'px';
+            cursorDot.style.top = dotY + 'px';
+            cursorDot.style.transform = 'translate(-50%, -50%)';
+        }
 
-    requestAnimationFrame(animateCursor);
-}
+        requestAnimationFrame(animateCursor);
+    }
     animateCursor();
 
     // Theme detection
     function checkTheme() {
         const html = document.documentElement;
         const body = document.body;
-        isDarkMode = html.classList.contains('dark') || 
-                     body.classList.contains('dark') ||
-                     html.getAttribute('data-theme') === 'dark' ||
-                     window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
+        isDarkMode = html.classList.contains('dark') ||
+            body.classList.contains('dark') ||
+            html.getAttribute('data-theme') === 'dark' ||
+            window.matchMedia('(prefers-color-scheme: dark)').matches;
+
         if (isDarkMode) {
             body.classList.remove('light-mode');
         } else {
             body.classList.add('light-mode');
         }
-        
+
         if (app) {
             app.setTheme(isDarkMode);
         }
@@ -409,12 +409,5 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Smooth scroll for CTA button
-    const ctaButton = document.querySelector('.cta-button');
-    if (ctaButton) {
-        ctaButton.addEventListener('click', (e) => {
-            // Allow default navigation
-            console.log('CTA clicked');
-        });
-    }
+
 });
